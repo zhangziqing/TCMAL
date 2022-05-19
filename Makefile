@@ -44,12 +44,12 @@ clean:
 help:
 	@echo this is a simple script to create the pure binary file
 	@echo all :
-	@echo \t create the elf format file 
+	@echo  "\t create the elf format file" 
 	@echo objdump :
-	@echo \t dump the elf file
+	@echo  "\t dump the elf file"
 	@echo objcopy :
-	@echo \t copy the prue binary file from the elf file
+	@echo  "\t copy the prue binary file from the elf file"
 	@echo clean :
-	@echo \t clean the object file
+	@echo  "\t clean the object file"
 	@echo by Zakilim
 
