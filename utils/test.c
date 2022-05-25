@@ -24,10 +24,10 @@ int main(int argc,char** argv) {
 	FILE* fp2 = fopen("mem2.txt","w");	
 	FILE* fp3 = fopen("mem3.txt","w");	
 	for (int i = 0 ; i < size / 4 ; i++) {
-		fprintf(fp0, "%02x\n",mem[4*i + 0]);
-		fprintf(fp1, "%02x\n",mem[4*i + 1]);
-		fprintf(fp2, "%02x\n",mem[4*i + 2]);
-		fprintf(fp3, "%02x\n",mem[4*i + 3]);
+		fprintf(fp0, "%02x\n",mem[4*i + 3]);
+		fprintf(fp1, "%02x\n",mem[4*i + 2]);
+		fprintf(fp2, "%02x\n",mem[4*i + 1]);
+		fprintf(fp3, "%02x\n",mem[4*i + 0]);
 	}
 	fclose(fp0);
 	fclose(fp1);
