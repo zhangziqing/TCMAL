@@ -12,7 +12,7 @@ LDFLAGS = --defsym=_pmem_start=0x00000000 --defsym=_entry_offset=0x0 --gc-sectio
 CCSRC ?= $(shell find src -name '*.c')
 ASSRC ?= $(shell find src -name '*.s')
 TARGET_DIR := build
-
+DATA_GEN_MOD =  utils/data
 OBJS = $(ASSRC:%.s=$(TARGET_DIR)/%.o) $(CCSRC:%.c=$(TARGET_DIR)/%.o)
 TARGET ?= test
 IMAGE ?= test
@@ -38,9 +38,13 @@ objdump :
 	$(OBJDUMP) -aD $(FLAGS) $(TARGET).elf > test.s
 objcopy:
 	$(OBJCOPY) -O binary $(IMAGE).elf $(IMAGE).bin  
+$(DATA_GEN_MOD):
+	gcc -o utils/data_gen utils/test.c
+data:$(DATA_GEN_MOD)
+	./utils/data_gen $(IMAGE).bin
 
 clean:
-	rm -rf test.elf test.s test.bin build
+	rm -rf test.elf test.s test.bin build mem*
 help:
 	@echo this is a simple script to create the pure binary file
 	@echo all :
