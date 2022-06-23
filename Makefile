@@ -1,14 +1,14 @@
-PREFIX = /home/zakilim/document/gcc-4.3-ls232/bin/mipsel-linux-
+PREFIX = ../chiplab/toolchains/loongarch32r-linux-gnusf/bin/loongarch32r-linux-gnusf-
 CC = $(PREFIX)gcc
 OBJDUMP = $(PREFIX)objdump 
 AS = $(PREFIX)as
 OBJCOPY = $(PREFIX)objcopy
 LD = $(PREFIX)ld
-COMMON_FLAG += -march=mips32 -EL  
-ASFLAG += -O0 $(COMMON_FLAG) -fno-abi-calls 
-CFLAGS += $(COMMON_FLAG) -nostdlib -static -mno-llsc -O2 -fno-pic -fdata-sections -ffunction-sections -fno-asynchronous-unwind-tables -fno-builtin -fno-stack-protector  -mno-check-zero-division\
+COMMON_FLAG += -march=loongarch32r 
+ASFLAG += -O0 $(COMMON_FLAG)
+CFLAGS += $(COMMON_FLAG) -nostdlib -static -O2 -fno-pic -fdata-sections -ffunction-sections -fno-asynchronous-unwind-tables -fno-builtin -fno-stack-protector  -mno-check-zero-division\
 		-Wno-main -U_FORTIFY_SOURCE 
-LDFLAGS = --defsym=_pmem_start=0x00000000 --defsym=_entry_offset=0x0 --gc-section -e _start -T linker.ld
+LDFLAGS = --defsym=_pmem_start=0x1c000000 --defsym=_entry_offset=0x0 --gc-section -e _start -T linker.ld
 CCSRC ?= $(shell find src -name '*.c')
 ASSRC ?= $(shell find src -name '*.s')
 TARGET_DIR := build

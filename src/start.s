@@ -5,4 +5,4 @@
 _start:
   move $fp, $zero
   la $sp, _stack_pointer
-  jal _trm_init
+  bl _trm_init
