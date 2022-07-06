@@ -32,12 +32,12 @@ $(TARGET_DIR)/%.o: %.c
 .PHONY:all dump help
 
 all :$(OBJS)
-	@echo LD + $(OBJS) > $(IMAGE).elf
-	@$(LD) $(LDFLAGS) $(OBJS) -o $(IMAGE).elf
+	@echo LD + $(OBJS) > $(TARGET_DIR)/$(IMAGE).elf
+	@$(LD) $(LDFLAGS) $(OBJS) -o $(TARGET_DIR)/$(IMAGE).elf
 objdump :
-	$(OBJDUMP) -aD $(FLAGS) $(TARGET).elf > test.s
+	$(OBJDUMP) -aD $(FLAGS) $(TARGET_DIR)/$(TARGET).elf > $(TARGET_DIR)/test.s
 objcopy:
-	$(OBJCOPY) -O binary $(IMAGE).elf $(IMAGE).bin  
+	$(OBJCOPY) -O binary $(TARGET_DIR)/$(IMAGE).elf $(TARGET_DIR)/$(IMAGE).bin  
 $(DATA_GEN_MOD):
 	gcc -o utils/data_gen utils/test.c
 data:$(DATA_GEN_MOD)
